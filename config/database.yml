@@ -1,8 +1,8 @@
-# SQLite version 3.x
-#   gem install sqlite3
+# Mysql version 2.x
+#   
 #
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
+#   Ensure the Mysql 2 gem is defined in your Gemfile
+#   
 #
 default: &default
   adapter: mysql2
@@ -15,7 +15,7 @@ default: &default
   
 development:
   adapter: mysql2
-  database: db/development.mysql 
+  database: DB_development
   encoding: utf8
   username: root
   password: password
@@ -27,8 +27,13 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.mysql
+  database: DB_development
+  adapter: mysql2
+  encoding: utf8
+  username: root
+  password: password
+  host: 127.0.0.1
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: DB_production
