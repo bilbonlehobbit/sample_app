@@ -2,31 +2,22 @@ require 'rails_helper'
 
 RSpec.describe PagesController, type: :controller do
      render_views   
-before(:each) do
-
-@response_httpstatus = expect(response).to have_http_status(:success)
-
-
+	before(:each) do
 @base_title = "Simple App du Tutoriel Ruby on Rails | "
-#@response_title = expect(response.body).to have_title("Simple App du Tutoriel Ruby on Rails | ")
+#@response_httpstatus = expect(response).to have_http_status(:success)
+end	
 
-end
- 			 describe "GET #home" do
+	 describe "GET #home" do
 	before(:each) do 
-		get :home 
-		  
+		get :home	  
 	end
 		it "returns http success" do
-                  @response_httpstatus 
-  end
- 	  	it "doit avoir le bon titre" do 
-		 
+                 @response_httpstatus 
+  	end
+ 	  	it "doit avoir le bon titre" do 	 
 		expect(response.body).to have_title(@base_title + "Accueil")
-  end
-
-
-end
-
+  	end
+     end
  			 describe "GET #contact" do
 	before(:each) do 
 		get :contact
@@ -34,11 +25,11 @@ end
 	end
 		it "returns http success" do
                  @response_httpstatus 
-  end
+	end
  	  	it "doit avoir le bon titre" do  
 		expect(response.body).to have_title(@base_title + "Contact")
-  end
-
+	end
+      end
 
  			 describe "GET #about" do
 	before(:each) do 
@@ -47,11 +38,9 @@ end
 	end
 		it "returns http success" do
                  @response_httpstatus 
-  end
+	end
  	  	it "doit avoir le bon titre" do  
 		expect(response.body).to have_title(@base_title + "A Propos")
-       end
-    end
-  end
+	end
+      end
 end
-
