@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "LayoutLinks", type: :request do
 include Capybara::RSpecMatchers 
+include Capybara::DSL
  describe "GET /layout_links" do
 
     it "devrait trouver Acceuil a /"  do
@@ -57,7 +58,19 @@ get '/signup'
 expect(response).to render_template(:new)
        expect(response.body).to include("Inscription")
 end
-
+it "devrait avoir le bon lien sur le layout" do
+    visit root_path
+    click_link "A Propos"
+    expect(page).to have_selector :link, 'A Propos', href: '/about'
+    click_link "Aide"
+    expect(page).to have_selector :link, 'Aide', href: '/help'
+    click_link "Contact"
+    expect(page).to have_selector :link, 'Contact', href: '/contact'
+    click_link "Accueil"
+    expect(page).to have_selector :link, 'Accueil', href: '/'
+    click_link "Inscription"
+    expect(page).to have_selector :link, 'Inscription', href: '/signup'
+  end
 
 
 

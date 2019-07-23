@@ -66,3 +66,5 @@ gem 'autotest'
 gem 'autotest-rails-pure'
 gem 'capybara'
 gem "rails-controller-testing", "~> 1.0"
+
+gem "tomkersten-annotate-models", "~> 1.0"
