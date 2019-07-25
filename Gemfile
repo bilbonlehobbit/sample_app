@@ -39,7 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -66,5 +66,5 @@ gem 'autotest'
 gem 'autotest-rails-pure'
 gem 'capybara'
 gem "rails-controller-testing", "~> 1.0"
-
+gem 'gravatar_image_tag'
 gem "tomkersten-annotate-models", "~> 1.0"
