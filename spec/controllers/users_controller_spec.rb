@@ -48,4 +48,49 @@ RSpec.describe UsersController, type: :controller do
         expect(response.body).to have_selector("h1>img", :class => "gravatar")
         end
       end
-    end
+  
+  describe "Post create" do
+    
+     describe "echec du post" do
+
+	before(:each) do
+	@attr = {:nom => "", :email => "", :password => "", :password_confirmation => ""}
+	end
+
+	it "ne doit pas creer d'utilisateur" do 
+	#expect{(post :create, :user => @attr).not_to change(User, :count)}
+	expect{post :create, params:{:user => @attr}}.not_to change(User, :count)
+	end
+        it "devrait avoir le bon titre" do
+        post :create, params:{:user => @attr}
+        expect(response.body).to have_title("Inscription")
+        end
+
+        it "devrait rendre la page 'new'" do
+        post :create, params:{:user => @attr}
+        expect(response).to render_template('new')
+        end
+      end
+
+     describe "succes du post" do
+
+	before(:each) do
+        @attr = {:nom => "User new", :email => "user@example.com", :password => "foobar", :password_confirmation => "foobar"}	
+	end
+	
+	it "devrait creer un nouvel utilisateur" do
+        expect{post :create, params:{:user => @attr}}.to change(User, :count).by(1)
+	end
+
+	it " devrait rediriger l'utilisateur vers sa page" do
+	post :create, params:{:user => @attr}    
+        expect(response).to redirect_to(user_path(assigns(:user)))
+	end
+
+	it "devrait avoir un message de bienvenue " do
+	post :create, params:{:user => @attr}
+        expect(flash[:success]).to be =~ /Bienvenue dans l'Application Exemple/i
+        end 
+      end
+   end
+end
