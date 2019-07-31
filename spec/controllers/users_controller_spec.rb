@@ -6,13 +6,38 @@ RSpec.describe UsersController, type: :controller do
   describe "GET #new" do
 	
 	it "returns http success" do
-        get :new
-        expect(response).to have_http_status(:success)
+	        get :new
+	        expect(response).to have_http_status(:success)
 	end
     
 	it "devrait avoir le bon titre" do
-        get :new
-        expect(response.body).to have_title("Inscription")
+	        get :new
+	        expect(response.body).to have_title("Inscription")
+	end
+
+	it "devrait avoir un champ nom" do
+		get :new
+		expect(response.body).to have_selector("input[name='user[nom]'][type='text'][id='user_nom']")
+	end
+	
+	it "devrait avoir un champs e-mail" do
+		get :new
+		expect(response.body).to have_selector("input[name='user[email]'][type='text'][id='user_email']")
+	end
+	
+	it "devrait avoir un champs password" do
+		get :new
+		expect(response.body).to have_selector("input[name='user[password]'][type='password'][id='user_password']")
+	end
+
+	it "devrait avoir un champs confirmation" do
+		get :new
+		expect(response.body).to have_selector("input[name='user[password_confirmation]'][type='password'][id='user_password_confirmation']")
+	end
+	
+	it "devrait avoit un bouton d'inscription" do
+		get :new
+		expect(response.body).to have_selector("input[name='commit'][type='submit'][value='Inscription']")
 	end
   end
  
@@ -91,6 +116,12 @@ RSpec.describe UsersController, type: :controller do
 	post :create, params:{:user => @attr}
         expect(flash[:success]).to be =~ /Bienvenue dans l'Application Exemple/i
         end 
+
+	it "devrait identifier l'utilisateur " do
+	post :create, params:{:user => @attr}
+	expect(controller).to be_signed_in
+	end
+
       end
    end
 end
