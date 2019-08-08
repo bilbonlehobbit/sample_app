@@ -1,4 +1,5 @@
 Rails.application.configure do
+config.force_ssl = false
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -17,7 +18,7 @@ Rails.application.configure do
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
-    config.cache_store = :memory_store
+    config.cache_store = :file_store
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.to_i}"
     }

@@ -50,6 +50,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rspec-rails'
+  gem 'faker'
 end
 
 group :test do
@@ -65,6 +66,8 @@ gem 'autotest-notification'
 gem 'autotest'
 gem 'autotest-rails-pure'
 gem 'capybara'
-gem "rails-controller-testing", "~> 1.0"
+gem 'rails-controller-testing', "~> 1.0"
 gem 'gravatar_image_tag'
-gem "tomkersten-annotate-models", "~> 1.0"
+gem 'tomkersten-annotate-models', "~> 1.0"
+gem 'will_paginate'
+gem 'selenium-webdriver', '~> 3.142'

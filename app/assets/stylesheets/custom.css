@@ -188,4 +188,14 @@ div.field, div.actions {
   list-style: circle;
 
 }
+
+/* page index */
+
+ul.users {
+  margin-top: 1em;
+}
+
+.users li {
+  list-style: none;
+}
 user_show_sidebar_css

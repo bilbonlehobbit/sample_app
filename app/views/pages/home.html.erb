@@ -1,7 +1,10 @@
     <h1>Simple App</h1>
+<% if signed_in? %>
+<%= render 'homewc' %>
+	<% else	%>
+  <%= render 'homewoc' %>
+	<% end %>
 
-<p>
-      Ceci est la page d'accueil de l'Application Exemple du
-      <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>.
-    </p>
- <%= link_to "S'inscrire", signup_path, :class => "signup_button round" %>
+
+
+
